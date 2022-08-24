@@ -1,7 +1,7 @@
 {
-  "name": "template_apis_node",
+  "name": "randomQuotes",
   "version": "0.0.0",
-  "description": "Template for APIs made in node js with a basic structure",
+  "description": "Random quotes",
   "main": "index.js",
   "repository": "https://github.com/Jesus-Lares/Template-Apis-node.git",
   "author": "Jesus Lares Cotreras <jesus.lares2000@gmail.com>",
@@ -40,7 +40,7 @@
     "faker": "^5.5.3",
     "husky": "^8.0.1",
     "jest": "^28.1.0",
-    "supertest": "^6.2.3",
+    "supertest": "^6.2.4",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",

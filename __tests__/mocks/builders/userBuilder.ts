@@ -9,7 +9,7 @@ export default class UserBuilder {
     this._user = {
       name: "",
       email: "",
-      age: 0,
+      password: "",
     };
     this.user = { ...this._user };
   }
@@ -24,8 +24,8 @@ export default class UserBuilder {
     return this;
   }
 
-  age(age: number): UserBuilder {
-    this.user.age = age;
+  password(password: string): UserBuilder {
+    this.user.password = password;
     return this;
   }
 

@@ -8,7 +8,7 @@ const validParamsUser = (req: Request, res: Response, next: NextFunction) => {
   const schemaRules = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().required(),
-    age: Joi.number().required(),
+    password: Joi.string().required(),
   });
 
   const options = {

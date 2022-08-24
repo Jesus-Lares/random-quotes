@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import request from "supertest";
 import app from "../../src/app";
 import server from "../../src/index";
@@ -13,7 +14,7 @@ afterAll(() => {
   server.close();
 });
 
-describe("field routes", () => {
+describe("user routes", () => {
   const URL_BASE = "/api/v1/user";
   const mockUser = UserFactory.createDefault();
 
@@ -24,8 +25,11 @@ describe("field routes", () => {
 
   test(`@POST ${URL_BASE} it should return an error message with the required parameters`, async () => {
     const requireParams = {
-      // eslint-disable-next-line quotes
-      body: ['"name" is required', '"email" is required', '"age" is required'],
+      body: [
+        '"name" is required',
+        '"email" is required',
+        '"password" is required',
+      ],
     };
     const response = await request(app).post(URL_BASE).send({});
     expect(response.body).toEqual(requireParams);
