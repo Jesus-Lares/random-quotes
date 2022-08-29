@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "@config/database";
+import { UserRole } from "./User";
 
 class User extends Model {}
 User.init(
@@ -24,7 +25,7 @@ User.init(
     },
     role: {
       type: DataTypes.STRING,
-      defaultValue: "user",
+      defaultValue: UserRole.client,
       allowNull: false,
     },
     state: {

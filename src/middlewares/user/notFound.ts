@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import UserRepository from "@context/user/application/user.repository";
-import { NOT_FOUND } from "@utils/errorsMessage";
+import { NOT_FOUND } from "@utils/messages/errorResponse";
 
 const notFoundUser = async (
   req: Request,
