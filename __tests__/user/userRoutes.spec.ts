@@ -32,7 +32,11 @@ describe("user routes", () => {
   const URL_BASE = "/api/v1/user";
   const createUser = new CreateUserUseCases();
 
-  test(`@POST ${URL_BASE} it should return data ${env.hostDatabase} if the user was created correctly`, async () => {
+  test(`@POST ${URL_BASE} it should return data ${
+    env.hostDatabase || "no hay base de datos"
+  } if the user was created correctly ${
+    env.database || "comprobado"
+  }`, async () => {
     const response = await request(app).post(URL_BASE).send(mockUser);
     expect(response.body).toHaveProperty("token");
     expect(response.body).toHaveProperty("message");
