@@ -35,11 +35,11 @@ jobs:
       IP_SERVER: ${{ secrets.IP_SERVER }}
       PORT: ${{ secrets.PORT }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DATABASE: ${{ secrets.DATABASE }}
+      DATABASE: ${{ secrets.test.DATABASE }}
       USERNAME: ${{ secrets.USERNAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
       STORAGE: ${{ secrets.STORAGE }}
-      HOST_NAME: ${{ secrets.HOST_NAME }}
+      HOST_NAME: ${{ test.HOST_NAME }}
 
     steps:
       - uses: actions/checkout@v2
