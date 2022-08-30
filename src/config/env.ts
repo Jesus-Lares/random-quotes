@@ -27,4 +27,5 @@ export default {
   username: process.env.USERNAME || "",
   password: process.env.PASSWORD || "",
   storage: process.env.STORAGE || "",
+  hostDatabase: process.env.HOST_DATABASE || "",
 };

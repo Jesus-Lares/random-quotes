@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "clean": "rm -rf coverage src/**/*.js src/**/*.map",
     "build": "npm run clean -rf ./build && tsc",
-    "test": "NODE_ENV=test && jest --detectOpenHandles --no-cache",
+    "test": "NODE_ENV=test && jest --silent --detectOpenHandles --no-cache",
     "test:server": "NODE_ENV=test && jest --no-cache"
   },
   "devDependencies": {
