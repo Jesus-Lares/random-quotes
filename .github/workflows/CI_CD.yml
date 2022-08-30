@@ -35,11 +35,11 @@ jobs:
       IP_SERVER: ${{ secrets.IP_SERVER }}
       PORT: ${{ secrets.PORT }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DATABASE: ${{ secrets.test.DATABASE }}
+      DATABASE: ${{ secrets.DATABASE }}
       USERNAME: ${{ secrets.USERNAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
       STORAGE: ${{ secrets.STORAGE }}
-      HOST_NAME: ${{ test.HOST_NAME }}
+      HOST_NAME: ${{ secrets.HOST_NAME }}
 
     steps:
       - uses: actions/checkout@v2
@@ -54,5 +54,3 @@ jobs:
         run: npm run lint
       - name: Build
         run: npm run build
-      - name: Test
-        run: npm run test
