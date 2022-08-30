@@ -22,6 +22,7 @@ export default {
   ipServer: process.env.IP_SERVER || "localhost",
   apiVersion: process.env.API_VERSION || "",
   initialRoute: process.env.INITIAL_ROUTE || "/",
+  secretKey: process.env.SECRET_KEY || "secretKey",
   database: process.env.DATABASE || "",
   username: process.env.USERNAME || "",
   password: process.env.PASSWORD || "",

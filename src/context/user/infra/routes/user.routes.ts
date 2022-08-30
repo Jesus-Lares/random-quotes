@@ -1,5 +1,6 @@
 import env from "@config/env";
 import { EnumMethodRoute, IRoute } from "@interface/IRoute";
+import emailExist from "@middlewares/user/emailExist";
 import notFoundUser from "@middlewares/user/notFound";
 import validParamsUser from "@middlewares/user/validateParams";
 import validateToken from "@middlewares/validateToken";
@@ -15,6 +16,7 @@ const routes: IRoute[] = [
     method: EnumMethodRoute.POST,
     handler: [
       requestCatch(validParamsUser),
+      requestCatch(emailExist),
       requestCatch(clientController.store),
     ],
   },

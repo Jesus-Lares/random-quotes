@@ -7,7 +7,7 @@ export default class UserFactory {
     builder
       .name("Jesus Lares")
       .email(faker.internet.email())
-      .age(faker.datatype.number());
+      .password(faker.internet.password());
     return builder;
   }
 
