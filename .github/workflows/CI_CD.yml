@@ -1,6 +1,6 @@
 name: CI/CD Pipiline
 
-on: 
+on:
   push:
     branches:
       - "master"
@@ -21,14 +21,14 @@ jobs:
         uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
-          
+
   deploy:
     runs-on: ubuntu-20.04
-    
+
     strategy:
       matrix:
         node-version: [16.x]
-    
+
     env:
       API_VERSION: ${{ secrets.API_VERSION }}
       INITIAL_ROUTE: ${{ secrets.INITIAL_ROUTE }}
@@ -39,11 +39,11 @@ jobs:
       USERNAME: ${{ secrets.USERNAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
       STORAGE: ${{ secrets.STORAGE }}
-      STORAGE: ${{ secrets.HOST_NAME }}
-      
+      HOST_NAME: ${{ secrets.HOST_NAME }}
+
     steps:
       - uses: actions/checkout@v2
-        with: 
+        with:
           fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
@@ -54,6 +54,3 @@ jobs:
         run: npm run lint
       - name: Build
         run: npm run build
-      - name: Test
-        run: npm run test
-        
