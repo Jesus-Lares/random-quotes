@@ -34,6 +34,12 @@ jobs:
       INITIAL_ROUTE: ${{ secrets.INITIAL_ROUTE }}
       IP_SERVER: ${{ secrets.IP_SERVER }}
       PORT: ${{ secrets.PORT }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DATABASE: ${{ secrets.DATABASE }}
+      USERNAME: ${{ secrets.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      STORAGE: ${{ secrets.STORAGE }}
+      STORAGE: ${{ secrets.HOST_NAME }}
       
     steps:
       - uses: actions/checkout@v2

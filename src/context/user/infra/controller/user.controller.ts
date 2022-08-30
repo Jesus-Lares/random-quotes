@@ -13,7 +13,6 @@ import UpdateUserUseCases from "../useCases/updateUser";
 
 export default class UserController {
   async store(req: Request, res: Response): Promise<Response> {
-    // Middleware to find if the email exist in other user
     const { password, ...userData } = req.body;
     const user = {
       ...userData,
