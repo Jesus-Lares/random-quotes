@@ -12,6 +12,7 @@ import UserFactory from "../mocks/factories/userFactory";
 import makeToken from "../mocks/makes/makeToken";
 import CreateUserUseCases from "../../src/context/user/infra/useCases/createUser";
 import { User } from "../../src/context/user/domain/User";
+import env from "../../src/config/env";
 
 let token: string;
 let mockUser: User;
@@ -31,7 +32,7 @@ describe("user routes", () => {
   const URL_BASE = "/api/v1/user";
   const createUser = new CreateUserUseCases();
 
-  test(`@POST ${URL_BASE} it should return data if the user was created correctly`, async () => {
+  test(`@POST ${URL_BASE} it should return data ${env.hostDatabase} if the user was created correctly`, async () => {
     const response = await request(app).post(URL_BASE).send(mockUser);
     expect(response.body).toHaveProperty("token");
     expect(response.body).toHaveProperty("message");
