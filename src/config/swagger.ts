@@ -1,5 +1,9 @@
 import swaggerJSDoc, { OAS3Definition, OAS3Options } from "swagger-jsdoc";
 import { userSchema, userRoutes } from "@context/user/application/user.docs";
+import {
+  quoteRoutes,
+  quoteSchema,
+} from "@context/quote/application/quote.docs";
 
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
@@ -22,10 +26,12 @@ const swaggerDefinition: OAS3Definition = {
     },
     schemas: {
       user: userSchema,
+      quote: quoteSchema,
     },
   },
   paths: {
     ...userRoutes,
+    ...quoteRoutes,
   },
 };
 
