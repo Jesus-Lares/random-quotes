@@ -1,6 +1,5 @@
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from "express";
-import bcrypt from "bcrypt";
 import JWT from "@utils/jwt";
 import userMessages from "@utils/messages/user";
 import Bcrypt from "@utils/bcrypt";
