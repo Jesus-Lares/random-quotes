@@ -4,6 +4,10 @@ import {
   quoteRoutes,
   quoteSchema,
 } from "@context/quote/application/quote.docs";
+import {
+  viewQuoteRoutes,
+  viewQuoteSchema,
+} from "@context/viewQuote/application/viewQuote.docs";
 
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
@@ -27,11 +31,13 @@ const swaggerDefinition: OAS3Definition = {
     schemas: {
       user: userSchema,
       quote: quoteSchema,
+      viewQuote: viewQuoteSchema,
     },
   },
   paths: {
     ...userRoutes,
     ...quoteRoutes,
+    ...viewQuoteRoutes,
   },
 };
 
