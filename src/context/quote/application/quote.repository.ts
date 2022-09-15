@@ -24,7 +24,7 @@ export default class UserRepository implements IRepository<QuoteSchema> {
     return user.update({ ...item });
   }
 
-  delete(id: number): Promise<Number | null> {
-    return QuoteSchema.destroy({ where: { id } });
+  delete(params: object): Promise<Number | null> {
+    return QuoteSchema.destroy({ where: { ...params } });
   }
 }
