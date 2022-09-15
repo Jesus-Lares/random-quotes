@@ -1,4 +1,4 @@
-import { User } from "../../../src/context/user/domain/User";
+import { User, UserRole } from "../../../src/context/user/domain/User";
 
 export default class UserBuilder {
   private user: User;
@@ -10,6 +10,7 @@ export default class UserBuilder {
       name: "",
       email: "",
       password: "",
+      role: UserRole.client,
     };
     this.user = { ...this._user };
   }
@@ -26,6 +27,11 @@ export default class UserBuilder {
 
   password(password: string): UserBuilder {
     this.user.password = password;
+    return this;
+  }
+
+  role(role: UserRole): UserBuilder {
+    this.user.role = role;
     return this;
   }
 
