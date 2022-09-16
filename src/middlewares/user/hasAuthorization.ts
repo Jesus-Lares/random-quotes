@@ -4,7 +4,9 @@ import { NOT_AUTHORIZATION } from "@utils/messages/errorResponse";
 
 const hasAuthorization = (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
-  if (req.userRole === UserRole.admin || Number(id) === req.userId) next();
+  if (req.userRole === UserRole.admin || Number(id) === req.userId) {
+    return next();
+  }
   return res.status(400).send({
     message: NOT_AUTHORIZATION,
   });

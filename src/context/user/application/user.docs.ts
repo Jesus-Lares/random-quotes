@@ -27,6 +27,27 @@ export const userSchema = {
 
 export const userRoutes = {
   [`${env.initialRoute}/user`]: {
+    get: {
+      summary: "Obtiene todos los usuarios",
+      tags: ["user"],
+      responses: {
+        200: {
+          description: "Get users",
+          content: {
+            "application/json": {
+              schema: {
+                type: "array",
+                items: {
+                  $ref: "#/components/schemas/user",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  [`${env.initialRoute}/user/login`]: {
     post: {
       summary: "Crear un nuevo usuario",
       tags: ["user"],
@@ -49,18 +70,20 @@ export const userRoutes = {
       },
     },
     get: {
-      summary: "Obtiene todos los usuarios",
+      summary: "Ingresa el usuario",
       tags: ["user"],
+      requestBody: {
+        required: true,
+        ...responseObjectCreate("user"),
+      },
       responses: {
         200: {
-          description: "Get users",
+          description: "user created",
           content: {
             "application/json": {
               schema: {
-                type: "array",
-                items: {
-                  $ref: "#/components/schemas/user",
-                },
+                type: "object",
+                $ref: "#/components/schemas/user",
               },
             },
           },

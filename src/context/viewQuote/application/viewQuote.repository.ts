@@ -19,7 +19,7 @@ export default class UserRepository
     return ViewQuoteSchema.findOne({ where: { ...query } });
   }
 
-  delete(params: ViewQuote): Promise<Number | null> {
+  delete(params: object): Promise<Number | null> {
     return ViewQuoteSchema.destroy({ where: { ...params } });
   }
 }
