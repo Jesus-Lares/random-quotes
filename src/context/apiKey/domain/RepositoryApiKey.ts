@@ -1,5 +1,3 @@
-import { ApiKey } from "./ApiKey";
-
 export interface RepositoryApiKey<T> {
   create(item: object): Promise<T>;
   find(query: T): Promise<T[]>;
