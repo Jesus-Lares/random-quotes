@@ -35,6 +35,7 @@ User.init(
     },
     apiKey: {
       type: DataTypes.STRING,
+      defaultValue: null,
     },
     dailyQuote: {
       type: DataTypes.STRING,
