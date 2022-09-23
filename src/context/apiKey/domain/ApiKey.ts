@@ -5,8 +5,8 @@ export const enum StatusApiKey {
 
 export interface ApiKey {
   userId: number;
-  key: string;
-  status: StatusApiKey;
+  status?: StatusApiKey;
+  key?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
