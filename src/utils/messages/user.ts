@@ -6,10 +6,12 @@ const userMessages: typesObjectString = {
   GET: "Usuario cargado correctamente.",
   DATA_EMPTY: "No se recibieron datos para el registro.",
   CREATE_SUCCESS: "Usuario creado correctamente.",
+  CREATE_APIKEY_SUCCESS: "Se ha creado correctamente.",
   EMAIL_NOT_EXIST: "El usuario no existe.",
   WRONG_PASSWORD: "Contraseña incorrecta.",
   TOKEN_VERICATION_FAILED: "token no valido, inicia sesion de nuevo",
   DELETE_SUCCESS: "Usuario eliminado.",
+  DELETE_APIKEY_SUCCESS: "Api key eliminada.",
   UPDATE_SUCCESS: "Usuario actulizado.",
   ALL_USERS:
     "Error al cargar los usuarios. Comprueba que tienes todo corretamente.",

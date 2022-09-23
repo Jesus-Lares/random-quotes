@@ -15,7 +15,6 @@ ApiKey.init(
       type: DataTypes.STRING,
       unique: true,
       primaryKey: true,
-      allowNull: false,
     },
     status: {
       type: DataTypes.STRING,

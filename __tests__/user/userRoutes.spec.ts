@@ -113,6 +113,16 @@ describe("user routes", () => {
     expect(response.body.name).toBe(mockUser.name);
   });
 
+  test(`@GET ${URL_BASE}/generateApiKey It should return the apiKey`, async () => {
+    const createUser = await request(app)
+      .post(`${URL_BASE}/login`)
+      .send(mockUser);
+    const response = await request(app)
+      .get(`${URL_BASE}/generateApiKey`)
+      .set("authorization", createUser.body.token);
+    expect(response.body.message).toBe(userMessages.CREATE_APIKEY_SUCCESS);
+  });
+
   test(`@PUT ${URL_BASE}/:id it should return error message if user does not exist`, async () => {
     const response = await request(app)
       .put(`${URL_BASE}/12`)
@@ -142,5 +152,14 @@ describe("user routes", () => {
       .delete(`${URL_BASE}/${user.id}`)
       .set("authorization", token);
     expect(response.body.message).toBe(userMessages.DELETE_SUCCESS);
+  });
+  test(`@DELETE ${URL_BASE}/:id It should return a message if deleted correctly`, async () => {
+    const createUser = await request(app)
+      .post(`${URL_BASE}/login`)
+      .send(mockUser);
+    const response = await request(app)
+      .delete(`${URL_BASE}/deleteApiKey`)
+      .set("authorization", createUser.body.token);
+    expect(response.body.message).toBe(userMessages.DELETE_APIKEY_SUCCESS);
   });
 });

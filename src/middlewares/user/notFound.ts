@@ -7,7 +7,7 @@ const notFoundUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params;
+  const id = req.params.id || req.userId;
   const userRepository = new UserRepository();
   const user = await userRepository.findById(Number(id));
 
