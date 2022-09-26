@@ -10,7 +10,8 @@ beforeAll(() => sequelize.sync());
 beforeEach(async () => {
   await QuoteSchema.destroy({ truncate: true });
   await UserSchema.destroy({ truncate: true });
-  quoteMock = await makeQuote();
+  const make = await makeQuote();
+  quoteMock = make.quote;
 });
 afterAll(() => sequelize.close());
 
