@@ -27,6 +27,6 @@ describe("find one api Key useCase", () => {
   test("should be return a record with the user id", async () => {
     await createApiKey.exec(apiKeyMock);
     const apiKey = await findApiKey.exec({ userId: apiKeyMock.userId });
-    expect(apiKeyMock.userId).toBe(apiKeyMock.userId);
+    expect(apiKey.userId).toBe(apiKeyMock.userId);
   });
 });

@@ -5,7 +5,7 @@ import { ViewQuote } from "../../src/context/viewQuote/domain/ViewQuote";
 import ViewQuoteSchema from "../../src/context/viewQuote/domain/ViewQuoteSchema";
 import FindViewQuote from "../../src/context/viewQuote/infra/useCases/findAllViewQuotes";
 import CreateViewQuote from "../../src/context/viewQuote/infra/useCases/createViewQuote";
-import makeViewQuote from "../mocks/makes/makeViewQuote";
+import makeViewQuote from "../mocks/makes/makeUserAndQuote";
 
 let viewQuoteMock: ViewQuote;
 beforeAll(() => sequelize.sync());
