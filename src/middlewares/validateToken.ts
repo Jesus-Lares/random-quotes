@@ -13,7 +13,6 @@ const validateToken = async (
   const token = req.headers.authorization;
   if (!token) return res.status(403).send({ message: BAD_REQUEST });
   const verified = new JWT().verify(token);
-  console.log(verified);
   if (verified === ACCESS_DENIED) {
     return res.status(400).send({ message: verified });
   }

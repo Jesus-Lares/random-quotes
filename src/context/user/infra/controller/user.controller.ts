@@ -5,6 +5,8 @@ import userMessages from "@utils/messages/user";
 import Bcrypt from "@utils/bcrypt";
 import DeleteQuoteByUserIdUseCases from "@context/quote/infra/useCases/deleteQuoteByUserId";
 import DeleteViewQuoteByUserIdUseCases from "@context/viewQuote/infra/useCases/deleteQuoteByUserId";
+import DeleteApiKeyUseCases from "@context/apiKey/infra/useCases/deleteApiKey";
+import CreateApiKeyUseCases from "@context/apiKey/infra/useCases/createApiKey";
 import CreateUserUseCases from "../useCases/createUser";
 import DeleteUserUseCases from "../useCases/deleteUser";
 import FindAllUsersUseCases from "../useCases/findAllUsers";
@@ -89,5 +91,30 @@ export default class UserController {
     await deleteQuote.exec(Number(id));
     await deleteViewQuote.exec(Number(id));
     return res.status(200).json({ message: userMessages.DELETE_SUCCESS });
+  }
+
+  async generateApiKey(req: Request, res: Response): Promise<Response> {
+    const userId = Number(req.userId);
+    const deleteApiKey = new DeleteApiKeyUseCases();
+    await deleteApiKey.exec(userId);
+    const createApiKey = new CreateApiKeyUseCases();
+    const { apiKey } = await createApiKey.exec({ userId });
+    const updateUser = new UpdateUserUseCases();
+    await updateUser.exec(userId, { apiKey });
+    return res.status(200).json({
+      message: userMessages.CREATE_APIKEY_SUCCESS,
+      apiKey,
+    });
+  }
+
+  async deleteApiKey(req: Request, res: Response): Promise<Response> {
+    const userId = Number(req.userId);
+    const deleteApiKey = new DeleteApiKeyUseCases();
+    await deleteApiKey.exec(userId);
+    const updateUser = new UpdateUserUseCases();
+    await updateUser.exec(userId, { apiKey: null });
+    return res.status(200).json({
+      message: userMessages.DELETE_APIKEY_SUCCESS,
+    });
   }
 }

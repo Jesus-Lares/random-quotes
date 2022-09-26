@@ -1,5 +1,5 @@
 {
-  "name": "randomQuotes",
+  "name": "random-quotes",
   "version": "0.0.0",
   "description": "Random quotes",
   "main": "index.js",
@@ -15,7 +15,7 @@
     "clean": "rm -rf coverage src/**/*.js src/**/*.map",
     "build": "npm run clean -rf ./build && tsc",
     "test": "NODE_ENV=test && jest --silent --detectOpenHandles --no-cache",
-    "test:server": "NODE_ENV=test && jest --no-cache"
+    "test:server": "NODE_ENV=test && jest --no-cache --watch"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -55,6 +55,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "generate-api-key": "^1.0.1",
     "helmet": "^5.0.2",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",

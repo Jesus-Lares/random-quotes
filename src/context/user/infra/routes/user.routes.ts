@@ -40,6 +40,15 @@ const routes: IRoute[] = [
     ],
   },
   {
+    path: `${URL_BASE}/generateApiKey`,
+    method: EnumMethodRoute.GET,
+    handler: [
+      requestCatch(validateToken),
+      requestCatch(notFoundUser),
+      requestCatch(clientController.generateApiKey),
+    ],
+  },
+  {
     path: URL_BASE,
     method: EnumMethodRoute.GET,
     handler: [
@@ -66,6 +75,15 @@ const routes: IRoute[] = [
       requestCatch(notFoundUser),
       requestCatch(hasAuthorization),
       requestCatch(clientController.update),
+    ],
+  },
+  {
+    path: `${URL_BASE}/deleteApiKey`,
+    method: EnumMethodRoute.DELETE,
+    handler: [
+      requestCatch(validateToken),
+      requestCatch(notFoundUser),
+      requestCatch(clientController.deleteApiKey),
     ],
   },
   {
