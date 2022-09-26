@@ -37,9 +37,6 @@ User.init(
       type: DataTypes.STRING,
       defaultValue: null,
     },
-    dailyQuote: {
-      type: DataTypes.STRING,
-    },
     allQuotes: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
