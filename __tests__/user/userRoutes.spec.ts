@@ -139,6 +139,7 @@ describe("user routes", () => {
     expect(response.body.user.name).toBe("updated");
     expect(response.body.message).toBe(userMessages.UPDATE_SUCCESS);
   });
+
   test(`@DELETE ${URL_BASE}/:id it should return error message if user does not exist`, async () => {
     const response = await request(app)
       .delete(`${URL_BASE}/12`)
@@ -153,6 +154,7 @@ describe("user routes", () => {
       .set("authorization", token);
     expect(response.body.message).toBe(userMessages.DELETE_SUCCESS);
   });
+
   test(`@DELETE ${URL_BASE}/:id It should return a message if deleted correctly`, async () => {
     const createUser = await request(app)
       .post(`${URL_BASE}/login`)

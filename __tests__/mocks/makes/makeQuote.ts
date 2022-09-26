@@ -7,7 +7,7 @@ const makeQuote = async () => {
   const createUser = new CreateUser();
   const userMock = UserFactory.createDefault();
   const user = await createUser.exec(userMock);
-  return { ...quote, user: user.id, role: user.role };
+  return { quote: { ...quote, user: user.id, role: user.role }, user };
 };
 
 export default makeQuote;

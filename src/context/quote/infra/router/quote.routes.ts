@@ -1,5 +1,9 @@
 import env from "@config/env";
 import { EnumMethodRoute, IRoute } from "@interface/IRoute";
+import hasAuthorization from "@middlewares/quote/hasAuthorization";
+import notFoundQuote from "@middlewares/quote/notFound";
+import validParamsQuote from "@middlewares/quote/validateParams";
+import validateToken from "@middlewares/validateToken";
 import requestCatch from "@utils/catchErrors";
 import QuoteController from "../controller/quote.controller";
 
@@ -10,32 +14,59 @@ const routes: IRoute[] = [
   {
     path: URL_BASE,
     method: EnumMethodRoute.POST,
-    handler: [requestCatch(quoteController.store)],
+    handler: [
+      requestCatch(validateToken),
+      requestCatch(validParamsQuote),
+      requestCatch(quoteController.store),
+    ],
   },
   {
     path: `${URL_BASE}/all`,
     method: EnumMethodRoute.GET,
-    handler: [requestCatch(quoteController.search)],
+    handler: [
+      requestCatch(validateToken),
+      requestCatch(hasAuthorization),
+      requestCatch(quoteController.search),
+    ],
   },
   {
     path: URL_BASE,
     method: EnumMethodRoute.GET,
-    handler: [requestCatch(quoteController.findOne)],
+    handler: [
+      requestCatch(validateToken),
+      requestCatch(hasAuthorization),
+      requestCatch(quoteController.findOne),
+    ],
   },
   {
     path: `${URL_BASE}/:id`,
     method: EnumMethodRoute.GET,
-    handler: [requestCatch(quoteController.findById)],
+    handler: [
+      requestCatch(validateToken),
+      requestCatch(notFoundQuote),
+      requestCatch(hasAuthorization),
+      requestCatch(quoteController.findById),
+    ],
   },
   {
     path: `${URL_BASE}/:id`,
     method: EnumMethodRoute.PUT,
-    handler: [requestCatch(quoteController.update)],
+    handler: [
+      requestCatch(validateToken),
+      requestCatch(notFoundQuote),
+      requestCatch(hasAuthorization),
+      requestCatch(quoteController.update),
+    ],
   },
   {
     path: `${URL_BASE}/:id`,
     method: EnumMethodRoute.DELETE,
-    handler: [requestCatch(quoteController.delete)],
+    handler: [
+      requestCatch(validateToken),
+      requestCatch(notFoundQuote),
+      requestCatch(hasAuthorization),
+      requestCatch(quoteController.delete),
+    ],
   },
 ];
 
