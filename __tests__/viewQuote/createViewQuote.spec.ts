@@ -4,7 +4,7 @@ import ViewQuoteSchema from "../../src/context/viewQuote/domain/ViewQuoteSchema"
 import QuoteSchema from "../../src/context/quote/domain/QuoteSchema";
 import UserSchema from "../../src/context/user/domain/UserSchema";
 import CreateViewQuote from "../../src/context/viewQuote/infra/useCases/createViewQuote";
-import makeViewQuote from "../mocks/makes/makeViewQuote";
+import makeViewQuote from "../mocks/makes/makeUserAndQuote";
 
 let viewQuoteMock: ViewQuote;
 beforeAll(() => sequelize.sync());

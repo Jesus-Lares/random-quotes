@@ -10,7 +10,6 @@ export interface User {
   password: string;
   role?: UserRole;
   state?: boolean;
-  dailyQuotes?: string;
   apiKey?: string;
   allQuotes?: boolean;
   createdAt?: Date;

@@ -8,5 +8,5 @@ export const enum EXPIRETIME {
 }
 
 export type typesObjectString = {
-  [key: string]: string;
+  [key: string]: any;
 };
