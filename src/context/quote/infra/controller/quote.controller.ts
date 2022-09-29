@@ -53,4 +53,8 @@ export default class QuoteController {
     await deleteQuote.exec(Number(id));
     return res.status(200).json({ message: quoteMessages.DELETE_SUCCESS });
   }
+
+  async getRandom(req: Request, res: Response): Promise<Response> {
+    return res.status(200).json();
+  }
 }
