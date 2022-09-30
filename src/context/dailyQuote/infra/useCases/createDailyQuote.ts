@@ -7,8 +7,7 @@ export default class CreateDailyQuoteUseCases {
   async exec(item: DailyQuote) {
     const repository = new DailyQuoteRepository();
     const formatDate = new FormatDate();
-    const expired = formatDate.generateExpiredDate({});
-    console.log(expired);
+    const expired = item.expired ?? formatDate.generateExpiredDate({});
     const dailyQuoteCreated = await repository.create({
       ...item,
       expired,

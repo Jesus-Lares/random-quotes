@@ -1,3 +1,4 @@
+import { Sequelize } from "sequelize";
 import { IRepository } from "@interface/IRepository";
 import QuoteSchema from "../domain/QuoteSchema";
 
@@ -8,6 +9,10 @@ export default class UserRepository implements IRepository<QuoteSchema> {
 
   find(query: object): Promise<QuoteSchema[]> {
     return QuoteSchema.findAll({ ...query, raw: true });
+  }
+
+  findByUserAndRole(query: object): Promise<QuoteSchema[]> {
+    return QuoteSchema.findAll({ where: Sequelize.or(query), raw: true });
   }
 
   findOne(query: object): Promise<QuoteSchema | null> {
