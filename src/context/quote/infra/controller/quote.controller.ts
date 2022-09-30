@@ -1,6 +1,11 @@
+/* eslint-disable no-await-in-loop */
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from "express";
 import quoteMessages from "@utils/messages/quote";
+import FindAllViewQuotesUseCases from "@context/viewQuote/infra/useCases/findAllViewQuotes";
+import DeleteViewQuoteUseCases from "@context/viewQuote/infra/useCases/deleteViewQuote";
+import AddAllViewQuoteUseCases from "@context/viewQuote/infra/useCases/addAllViewQuotes";
+import { UserRole } from "@context/user/domain/User";
 import CreateQuoteUseCases from "../useCases/createQuote";
 import DeleteQuoteUseCases from "../useCases/deleteQuote";
 import FindAllQuotesUseCases from "../useCases/findAllQuotes";
@@ -55,6 +60,32 @@ export default class QuoteController {
   }
 
   async getRandom(req: Request, res: Response): Promise<Response> {
-    return res.status(200).json();
+    const { userId = -1, userRole } = req;
+    const findAllViewQuotes = new FindAllViewQuotesUseCases();
+    const addAllViewQuote = new AddAllViewQuoteUseCases();
+    const deleteViewQuotes = new DeleteViewQuoteUseCases();
+    const findQuote = new FindQuoteByIdUseCases();
+    let viewQuotes = await findAllViewQuotes.exec({ user: userId });
+    if (!viewQuotes.length) {
+      viewQuotes = await addAllViewQuote.exec(
+        userId,
+        userRole === UserRole.admin
+      );
+    }
+    let quote = null;
+    do {
+      const random = Math.floor(Math.random() * viewQuotes.length);
+      const quoteRandom = viewQuotes[random].get();
+      viewQuotes = viewQuotes.splice(random, 1);
+      await deleteViewQuotes.exec({ ...quoteRandom });
+      quote = await findQuote.exec(quoteRandom.quote);
+      if (!viewQuotes.length) {
+        viewQuotes = await addAllViewQuote.exec(
+          userId,
+          userRole === UserRole.admin
+        );
+      }
+    } while (quote);
+    return res.status(200).json({ quote });
   }
 }

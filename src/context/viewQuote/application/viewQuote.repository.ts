@@ -1,7 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable brace-style */
 import { RepositoryViewQuote } from "../domain/RepositoryViewQuote";
-import { ViewQuote } from "../domain/ViewQuote";
 import ViewQuoteSchema from "../domain/ViewQuoteSchema";
 
 export default class UserRepository
@@ -9,6 +8,10 @@ export default class UserRepository
 {
   create(item: object): Promise<ViewQuoteSchema> {
     return ViewQuoteSchema.create({ ...item });
+  }
+
+  createMultiple(items: readonly any[]): Promise<ViewQuoteSchema[]> {
+    return ViewQuoteSchema.bulkCreate(items);
   }
 
   find(query: object): Promise<ViewQuoteSchema[]> {
