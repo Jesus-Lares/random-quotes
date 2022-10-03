@@ -67,6 +67,11 @@
     "swagger-ui-express": "^4.5.0"
   },
   "imports": {
-    "@context/*": "./src/context/*"
+    "@context/*": "./src/context/*",
+    "@router/*": "./src/router/*",
+    "@config/*": "./src/config/*",
+    "@interface/*": "./src/interface/*",
+    "@middlewares/*": "./src/middlewares/*",
+    "@utils/*": "./src/utils/*"
   }
 }
