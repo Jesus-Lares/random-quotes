@@ -8,7 +8,7 @@ export default class UserRepository implements IRepository<QuoteSchema> {
   }
 
   find(query: object): Promise<QuoteSchema[]> {
-    return QuoteSchema.findAll({ ...query, raw: true });
+    return QuoteSchema.findAll({ where: { ...query }, raw: true });
   }
 
   findByUserAndRole(query: object): Promise<QuoteSchema[]> {

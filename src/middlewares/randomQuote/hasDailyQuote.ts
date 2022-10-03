@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { BAD_REQUEST } from "@utils/messages/errorResponse";
 import FindDailyQuoteByUserIdUseCases from "@context/dailyQuote/infra/useCases/findByUserId";
-import FormatDate from "@utils/formatDate";
 import FindQuoteByIdUseCases from "@context/quote/infra/useCases/findQuoteById";
 
 const hasDailyQuote = async (
@@ -14,10 +13,9 @@ const hasDailyQuote = async (
   const find = new FindDailyQuoteByUserIdUseCases();
   const dailyQuote = await find.exec(userId);
   if (!dailyQuote) return next();
-  const formatDate = new FormatDate();
-  const today = new Date().toLocaleDateString();
-  const expired = formatDate.formatDate(dailyQuote.expired, "database");
-  const isExpired = expired < today;
+  const today = new Date();
+  const expired = dailyQuote.expired.split("-");
+  const isExpired = today > new Date(expired[0], expired[1] - 1, expired[2]);
   if (isExpired) return next();
   const findQuote = new FindQuoteByIdUseCases();
   const quote = await findQuote.exec(dailyQuote.quote);

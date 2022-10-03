@@ -45,12 +45,7 @@ describe("quote routes", () => {
 
   test(`@POST ${URL_BASE} it should return an error message with the required parameters`, async () => {
     const requireParams = {
-      body: [
-        '"quote" is required',
-        '"writer" is required',
-        '"role" is required',
-        '"user" is required',
-      ],
+      body: ['"quote" is required', '"writer" is required'],
     };
     const response = await request(app)
       .post(URL_BASE)

@@ -10,7 +10,6 @@ const validateApiKey = async (
   const { apiKey } = req.params;
   const find = new FindOneUserUseCases();
   const user = await find.exec({ apiKey });
-  console.log(user);
   if (!user) return res.status(404).json({ message: NOT_FOUND });
   req.userId = user.id;
   req.userRole = user.role;

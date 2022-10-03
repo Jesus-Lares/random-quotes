@@ -11,7 +11,10 @@ export default class AddAllViewQuoteUseCases {
       ...(allQuotes && { role: UserRole.admin }),
     });
     if (!quotes.length) throw new Error("Not have quotes");
-    const newViewQuotes = quotes.map((id) => ({ quote: id, user: userId }));
+    const newViewQuotes = quotes.map((quote) => ({
+      quote: quote.id,
+      user: userId,
+    }));
     const repository = new ViewQuoteRepository();
     return repository.createMultiple(newViewQuotes);
   }

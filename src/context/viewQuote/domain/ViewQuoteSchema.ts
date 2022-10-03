@@ -17,7 +17,7 @@ ViewQuotes.init(
   },
   {
     sequelize,
-    modelName: "viewQuotes",
+    modelName: "ViewQuotes",
   }
 );
 
