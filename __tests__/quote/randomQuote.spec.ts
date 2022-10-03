@@ -5,6 +5,8 @@ import sequelize from "../../src/config/database";
 import UserSchema from "../../src/context/user/domain/UserSchema";
 import QuoteSchema from "../../src/context/quote/domain/QuoteSchema";
 import ApiKeySchema from "../../src/context/apiKey/domain/ApiKeySchema";
+import DailyQuoteSchema from "../../src/context/dailyQuote/domain/DailyQuoteSchema";
+import ViewQuoteSchema from "../../src/context/viewQuote/domain/ViewQuoteSchema";
 import { NOT_FOUND } from "../../src/utils/messages/errorResponse";
 import CreateDailyQuoteUseCases from "../../src/context/dailyQuote/infra/useCases/createDailyQuote";
 import makeQuoteWithUserId from "../mocks/makes/makeQuoteWithUserId";
@@ -18,6 +20,8 @@ beforeEach(async () => {
   await UserSchema.destroy({ truncate: true });
   await QuoteSchema.destroy({ truncate: true });
   await ApiKeySchema.destroy({ truncate: true });
+  await DailyQuoteSchema.destroy({ truncate: true });
+  await ViewQuoteSchema.destroy({ truncate: true });
   const apikeyCreated = await makeApiKeyWithToken(app);
   apiKey = apikeyCreated.apiKey;
   userId = apikeyCreated.userId;
@@ -55,6 +59,14 @@ describe("route of random quote of the user", () => {
     const response = await request(app)
       .get(`${URL_BASE}/${apiKey}/random`)
       .expect(200);
-    expect(response.body.quote.id).not.toBe(mockDailyQuote.quote);
+    expect(response.body.quote).toHaveProperty("id");
+  });
+
+  test(`@GET ${URL_BASE}/:apiKey/random It should return the random quote when the user not have a daily quote `, async () => {
+    await makeQuoteWithUserId(userId);
+    const response = await request(app)
+      .get(`${URL_BASE}/${apiKey}/random`)
+      .expect(200);
+    expect(response.body.quote).toHaveProperty("id");
   });
 });

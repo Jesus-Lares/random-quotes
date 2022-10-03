@@ -23,7 +23,6 @@ const validateToken = async (
     UserRole.admin,
     Object.values(verified)[0].role
   );
-
   req.userRole = isAdmin ? UserRole.admin : UserRole.client;
   req.userId = Object.values(verified)[0].id;
   return next();

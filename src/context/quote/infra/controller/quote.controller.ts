@@ -2,6 +2,8 @@
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from "express";
 import quoteMessages from "@utils/messages/quote";
+import CreateDailyQuoteUseCases from "@context/dailyQuote/infra/useCases/createDailyQuote";
+import DeleteDailyQuoteUseCases from "@context/dailyQuote/infra/useCases/deleteDailyQuote";
 import FindAllViewQuotesUseCases from "@context/viewQuote/infra/useCases/findAllViewQuotes";
 import DeleteViewQuoteUseCases from "@context/viewQuote/infra/useCases/deleteViewQuote";
 import AddAllViewQuoteUseCases from "@context/viewQuote/infra/useCases/addAllViewQuotes";
@@ -15,7 +17,10 @@ import UpdateQuoteUseCases from "../useCases/updateQuote";
 
 export default class QuoteController {
   async store(req: Request, res: Response): Promise<Response> {
+    const { userId, userRole } = req;
     const quote = req.body;
+    quote.user ??= userId;
+    quote.role ??= userRole;
     const createQuote = new CreateQuoteUseCases();
     const quoteResult = await createQuote.exec(quote);
     return res.status(200).send({
@@ -64,7 +69,9 @@ export default class QuoteController {
     const findAllViewQuotes = new FindAllViewQuotesUseCases();
     const addAllViewQuote = new AddAllViewQuoteUseCases();
     const deleteViewQuotes = new DeleteViewQuoteUseCases();
+    const deleteDailyQuote = new DeleteDailyQuoteUseCases();
     const findQuote = new FindQuoteByIdUseCases();
+    await deleteDailyQuote.exec(userId);
     let viewQuotes = await findAllViewQuotes.exec({ user: userId });
     if (!viewQuotes.length) {
       viewQuotes = await addAllViewQuote.exec(
@@ -75,9 +82,13 @@ export default class QuoteController {
     let quote = null;
     do {
       const random = Math.floor(Math.random() * viewQuotes.length);
-      const quoteRandom = viewQuotes[random].get();
-      viewQuotes = viewQuotes.splice(random, 1);
-      await deleteViewQuotes.exec({ ...quoteRandom });
+      const quoteRandom = viewQuotes[random]?.get();
+      if (viewQuotes.length - 1) viewQuotes = viewQuotes.splice(random, 1);
+      else viewQuotes = [];
+      await deleteViewQuotes.exec({
+        user: userId,
+        quote: quoteRandom.quote,
+      });
       quote = await findQuote.exec(quoteRandom.quote);
       if (!viewQuotes.length) {
         viewQuotes = await addAllViewQuote.exec(
@@ -85,7 +96,9 @@ export default class QuoteController {
           userRole === UserRole.admin
         );
       }
-    } while (quote);
+    } while (!quote);
+    const createDailyQuote = new CreateDailyQuoteUseCases();
+    await createDailyQuote.exec({ userId, quote: quote.id });
     return res.status(200).json({ quote });
   }
 }

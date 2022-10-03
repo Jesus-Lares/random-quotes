@@ -7,8 +7,8 @@ const { database, username, password, storage, hostDatabase: host } = env;
 const sequelize = new Sequelize(database, username, password, {
   host,
   dialect: "mysql",
-  storage,
   logging: false,
+  ...(storage.length ? { storage } : { dialectOptions: { ssl: {} } }),
 });
 
 export default sequelize;

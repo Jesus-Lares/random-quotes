@@ -24,7 +24,7 @@ ApiKey.init(
   },
   {
     sequelize,
-    modelName: "apiKey",
+    modelName: "ApiKey",
   }
 );
 

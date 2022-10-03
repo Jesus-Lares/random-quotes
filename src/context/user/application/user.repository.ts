@@ -7,7 +7,7 @@ export default class UserRepository implements IRepository<UserSchema> {
   }
 
   find(query: object): Promise<UserSchema[]> {
-    return UserSchema.findAll({ ...query, raw: true });
+    return UserSchema.findAll({ where: { ...query }, raw: true });
   }
 
   findOne(query: object): Promise<UserSchema | null> {

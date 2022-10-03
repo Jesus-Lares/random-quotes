@@ -20,7 +20,7 @@ DailyQuote.init(
   },
   {
     sequelize,
-    modelName: "dailyQuote",
+    modelName: "DailyQuote",
   }
 );
 
