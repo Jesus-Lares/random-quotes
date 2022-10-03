@@ -1,4 +1,3 @@
-import { EXPIRETIME } from "@utils/constants";
 import FormatDate from "@utils/formatDate";
 import DailyQuoteRepository from "../../application/dailyQuote.repository";
 import { DailyQuote } from "../../domain/DailyQuote";

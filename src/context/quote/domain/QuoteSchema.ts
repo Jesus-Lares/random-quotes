@@ -2,7 +2,9 @@ import { Model, DataTypes } from "sequelize";
 import sequelize from "@config/database";
 import { UserRole } from "@context/user/domain/User";
 
-class Quotes extends Model {}
+class Quotes extends Model {
+  id: any;
+}
 Quotes.init(
   {
     id: {
@@ -30,7 +32,7 @@ Quotes.init(
   },
   {
     sequelize,
-    modelName: "quotes",
+    modelName: "Quotes",
   }
 );
 

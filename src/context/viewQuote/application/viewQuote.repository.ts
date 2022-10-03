@@ -15,7 +15,7 @@ export default class UserRepository
   }
 
   find(query: object): Promise<ViewQuoteSchema[]> {
-    return ViewQuoteSchema.findAll({ ...query, raw: true });
+    return ViewQuoteSchema.findAll({ where: { ...query } });
   }
 
   findOne(query: object): Promise<ViewQuoteSchema | null> {

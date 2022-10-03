@@ -8,7 +8,7 @@ export default class CreateApiKeyUseCases {
     const repository = new ApiKeyRepository();
     const apiKeyCreated = await repository.create({
       ...item,
-      apiKey: generateApiKey(),
+      apiKey: generateApiKey({ method: "string", length: 8 }),
     });
     return apiKeyCreated.get();
   }

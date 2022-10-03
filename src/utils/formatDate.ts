@@ -22,13 +22,13 @@ class FormatDate {
   formatDate(expired: string, type = "date") {
     const date = expired.split(typesOfFormat[type].from);
     return [
-      this.addCeros(date[2]),
-      this.addCeros(date[1]),
-      this.addCeros(date[0]),
+      this.addCeros(date[2], type),
+      this.addCeros(date[1], type),
+      this.addCeros(date[0], type),
     ].join(typesOfFormat[type].to);
   }
 
-  addCeros(number: string) {
+  addCeros(number: string, type: string) {
     if (number.length === 4 || number.length === 2) return number;
     return `0${number}`;
   }
