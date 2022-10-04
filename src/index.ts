@@ -1,3 +1,4 @@
+import "module-alias/register";
 import http from "http";
 import app from "./app";
 import env from "./config/env";
@@ -17,7 +18,9 @@ app.set("port", port);
 
 const httpServer = http.createServer(app);
 httpServer.listen(port, () => {
-  console.log(`server running in http://${ipServer}:${port}${env.initialRoute}`);
+  console.log(
+    `server running in http://${ipServer}:${port}${env.initialRoute}`
+  );
 });
 
 export default httpServer;

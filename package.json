@@ -60,6 +60,7 @@
     "helmet": "^5.0.2",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.4",
@@ -73,5 +74,13 @@
     "@interface/*": "./src/interface/*",
     "@middlewares/*": "./src/middlewares/*",
     "@utils/*": "./src/utils/*"
+  },
+  "_moduleAliases": {
+    "@router": "./build/router",
+    "@context": "./build/context",
+    "@config": "./build/config",
+    "@interface": "./build/interface",
+    "@middlewares": "./build/middlewares",
+    "@utils": "./build/utils"
   }
 }
