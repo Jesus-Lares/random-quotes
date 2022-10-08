@@ -12,21 +12,13 @@ const hasDailyQuote = async (
   if (!userId) return res.status(403).send({ message: BAD_REQUEST });
   const find = new FindDailyQuoteByUserIdUseCases();
   const dailyQuote = await find.exec(userId);
-  console.log(dailyQuote);
   if (!dailyQuote) return next();
   const today = new Date();
   const expired = dailyQuote.expired.split("-");
-  console.log(expired);
   const isExpired = today > new Date(expired[0], expired[2], expired[1]);
-  console.log(
-    isExpired,
-    today,
-    new Date(expired[0], expired[1] - 1, expired[2])
-  );
   if (isExpired) return next();
   const findQuote = new FindQuoteByIdUseCases();
   const quote = await findQuote.exec(dailyQuote.quote);
-  console.log(quote);
   if (!quote) return next();
   return res.status(200).json({ quote });
 };

@@ -13,10 +13,6 @@ const typesOfFormat: typesObjectString = {
 
 class FormatDate {
   generateExpiredDate({ today = new Date(), expiresIn = EXPIRETIME.H24 }) {
-    console.log(
-      new Date(today.getTime() + expiresIn * 1000).toLocaleDateString(),
-      new Date(today.getTime()).toLocaleDateString()
-    );
     const expired = new Date(
       today.getTime() + expiresIn * 1000
     ).toLocaleDateString();
