@@ -15,7 +15,7 @@ const hasDailyQuote = async (
   if (!dailyQuote) return next();
   const today = new Date();
   const expired = dailyQuote.expired.split("-");
-  const isExpired = today > new Date(expired[0], expired[1] - 1, expired[2]);
+  const isExpired = today > new Date(expired[0], expired[2], expired[1]);
   if (isExpired) return next();
   const findQuote = new FindQuoteByIdUseCases();
   const quote = await findQuote.exec(dailyQuote.quote);

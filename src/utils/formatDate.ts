@@ -23,8 +23,8 @@ class FormatDate {
     const date = expired.split(typesOfFormat[type].from);
     return [
       this.addCeros(date[2], type),
-      this.addCeros(date[1], type),
       this.addCeros(date[0], type),
+      this.addCeros(date[1], type),
     ].join(typesOfFormat[type].to);
   }
 
