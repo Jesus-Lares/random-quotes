@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import { NextFunction, Request, Response } from "express";
 import { BAD_REQUEST } from "@utils/messages/errorResponse";
 import FindDailyQuoteByUserIdUseCases from "@context/dailyQuote/infra/useCases/findByUserId";
