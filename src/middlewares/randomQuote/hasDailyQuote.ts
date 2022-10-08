@@ -16,6 +16,7 @@ const hasDailyQuote = async (
   if (!dailyQuote) return next();
   const today = new Date();
   const expired = dailyQuote.expired.split("-");
+  console.log(expired);
   const isExpired = today > new Date(expired[0], expired[1] - 1, expired[2]);
   console.log(
     isExpired,
